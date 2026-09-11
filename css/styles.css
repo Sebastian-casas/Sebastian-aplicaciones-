@@ -302,7 +302,7 @@ section { position: relative; }
 .hero-card {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3.6;
+  aspect-ratio: 5/4;
   background: linear-gradient(150deg, #313f4c, #1c252d);
   border-radius: 28px;
   border: 1px solid rgba(255,255,255,0.08);
@@ -321,6 +321,7 @@ section { position: relative; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 60%;
   display: block;
 }
 .hero-floating {
@@ -559,12 +560,12 @@ section { position: relative; }
 }
 .gallery-item img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
   object-fit: cover;
   display: block;
 }
 .gallery-item.is-empty img { display: none; }
-.gallery-item.is-empty { aspect-ratio: 4/3; display: flex; align-items: flex-end; }
+.gallery-item.is-empty { aspect-ratio: 3/2; display: flex; align-items: flex-end; }
 .gallery-item figcaption {
   padding: 14px 18px;
   font-size: 14px;

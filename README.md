@@ -42,19 +42,17 @@ Si cuentas con el archivo fuente (AI, EPS, SVG o un PNG en alta resolución con 
 
 ## Fotografías reales
 
-El sitio ya está preparado para mostrar fotos reales de las maniobras de SATI (en el hero y en la sección "Trabajos en terreno"), pero **las fotos no pudieron incorporarse automáticamente**: cuando se comparten imágenes directamente en el chat, este entorno solo puede "verlas" para dar una respuesta — no quedan guardadas como archivo, así que no hay forma de copiarlas al repositorio desde aquí.
+El sitio usa fotos reales de maniobras de SATI en terreno (subidas directamente al repositorio):
 
-Para que las fotos aparezcan, súbelas directamente al repositorio (por la web de GitHub, arrastrando el archivo a la carpeta, o hicerá `git add`) con **estos nombres exactos**, dentro de `assets/img/fotos/`:
+| Archivo | Dónde se usa |
+|---|---|
+| `assets/img/fotos/hero.jpg` | Imagen principal del inicio (hero) — maniobra de izaje con el brazo extendido |
+| `assets/img/fotos/trabajo-01.jpg` | Sección "Trabajos en terreno" — posicionamiento del camión pluma en faena |
+| `assets/img/fotos/trabajo-02.jpg` | Sección "Trabajos en terreno" — izaje de equipos en faena industrial |
 
-| Archivo | Dónde se usa | Recomendación |
-|---|---|---|
-| `assets/img/fotos/hero.jpg` | Imagen principal del inicio (hero) | Foto horizontal, idealmente la maniobra con el brazo extendido, mínimo 1200×900px |
-| `assets/img/fotos/trabajo-01.jpg` | Sección "Trabajos en terreno", primera foto | Foto de posicionamiento/llegada a faena |
-| `assets/img/fotos/trabajo-02.jpg` | Sección "Trabajos en terreno", segunda foto | Foto de la maniobra de izaje en curso |
+`hero.jpg` y `trabajo-02.jpg` usan la misma fotografía (es la más representativa que tenemos por ahora) mostrada con un recorte distinto en cada sección. Para variar esto, o sumar más fotos a la galería, súbelas al repo con un nombre nuevo (por ejemplo `trabajo-03.jpg`) en `assets/img/fotos/` y agrega su bloque `<figure class="gallery-item">` en `index.html` (sección `id="galeria"`), o reemplaza cualquiera de los tres archivos existentes manteniendo el mismo nombre.
 
-Mientras esos archivos no existan, esos espacios se ven como un panel oscuro liso (no se rompe el diseño), y se completan solos apenas subas las fotos con esos nombres — no hace falta tocar el código de nuevo.
-
-Si prefieres, también puedes enviarme las fotos por otra vía en una próxima conversación (Google Drive, Gmail) y las incorporo yo directamente.
+Si en algún momento faltara alguno de estos archivos, esos espacios se ven como un panel oscuro liso en vez de romper el diseño.
 
 ## Formulario de contacto
 
