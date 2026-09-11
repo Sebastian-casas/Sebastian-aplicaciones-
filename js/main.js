@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Reveal on scroll ---------- */
   var revealTargets = document.querySelectorAll(
-    '.service-card, .why-card, .process-step, .fleet-card, .testi-card, .feature-row'
+    '.service-card, .why-card, .process-step, .fleet-card, .gallery-item, .testi-card, .feature-row'
   );
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries, obs) {
