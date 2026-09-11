@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="satiMarkTitle">
+  <title id="satiMarkTitle">SATI</title>
+  <rect x="4" y="4" width="112" height="112" rx="24" fill="#F7A21D"/>
+  <path d="M84 40 L84 64 L52 64 L52 52 L28 74 L52 96 L52 84 L96 84 L96 40 Z" fill="#26313C"/>
+</svg>

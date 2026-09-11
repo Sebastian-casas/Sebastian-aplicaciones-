@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160" role="img" aria-labelledby="satiLogoTitle">
+  <title id="satiLogoTitle">SATI Transportes y Maquinaria</title>
+  <!-- Icono -->
+  <rect x="4" y="16" width="112" height="112" rx="24" fill="#F7A21D"/>
+  <path d="M84 46 L84 70 L56 70 L56 58 L34 78 L56 98 L56 86 L96 86 L96 46 Z" fill="#26313C"/>
+  <!-- Wordmark -->
+  <g fill="#26313C" font-family="'Poppins','Segoe UI',sans-serif" font-weight="700">
+    <text x="140" y="100" font-size="92" letter-spacing="-2">sa</text>
+  </g>
+  <g fill="#F7A21D" font-family="'Poppins','Segoe UI',sans-serif" font-weight="700">
+    <text x="308" y="100" font-size="92" letter-spacing="-2">ti</text>
+  </g>
+  <text x="140" y="140" font-family="'Poppins','Segoe UI',sans-serif" font-size="19" letter-spacing="7" fill="#5b6672">TRANSPORTES Y MAQUINARIA</text>
+</svg>
