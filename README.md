@@ -50,4 +50,12 @@ Si en algún momento faltara alguno de estos archivos, esos espacios se ven como
 
 ## Formulario de contacto
 
-El formulario de cotización no tiene backend: al enviarlo arma un enlace `mailto:` (asunto + cuerpo con los datos del formulario) y abre el programa de correo del visitante, dirigido a `administracion@satichile.cl`. Esto depende de que el visitante tenga un cliente de correo configurado en su dispositivo/navegador; si prefieres que el envío ocurra directamente desde el servidor sin depender de eso, se puede conectar a un servicio de formularios (Formspree, Web3Forms, etc.) o a un backend propio.
+El sitio no tiene backend propio, así que el formulario de cotización envía los datos directo a `administracion@satichile.cl` usando **[FormSubmit](https://formsubmit.co)**, un servicio gratuito que reenvía por correo lo que le llega — no requiere cuenta, API key, ni servidor propio.
+
+**Paso obligatorio antes de que funcione:** la primera vez que alguien envíe el formulario, FormSubmit manda un correo de confirmación a `administracion@satichile.cl` pidiendo activar el buzón (para evitar que cualquiera use FormSubmit para mandar spam a un correo ajeno). Alguien con acceso a esa casilla debe **hacer clic en "Activar" dentro de ese primer correo** — recién después de eso, todos los envíos futuros del formulario llegan automáticamente. Antes de esa activación, los envíos previos a ese primer clic pueden no llegar.
+
+Si el envío a FormSubmit falla (sin conexión, servicio caído, etc.), el sitio muestra un aviso y abre automáticamente el correo del visitante (`mailto:`) con el mensaje ya armado, como respaldo, para que la solicitud no se pierda.
+
+Nota: no pude probar el envío real de extremo a extremo desde este entorno de desarrollo porque su proxy de red bloquea el acceso a formsubmit.co — conviene probarlo una vez publicado el sitio (llenar el formulario real y confirmar que llega el correo de activación).
+
+Si en el futuro prefieres otro proveedor (Web3Forms, Formspree, un backend propio, etc.), solo hay que cambiar la URL del `fetch` en `js/main.js` (función del listener de `submit` en el formulario) y el formato del cuerpo que espera ese servicio.

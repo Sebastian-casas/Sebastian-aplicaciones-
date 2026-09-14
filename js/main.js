@@ -107,19 +107,11 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Contact form -> Correo ---------- */
   var form = document.getElementById('quoteForm');
   var successBox = document.getElementById('formSuccess');
+  var errorBox = document.getElementById('formError');
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var submitBtnDefaultHTML = submitBtn.innerHTML;
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    var data = {
-      nombre: form.nombre.value.trim(),
-      empresa: form.empresa.value.trim(),
-      telefono: form.telefono.value.trim(),
-      email: form.email.value.trim(),
-      servicio: form.servicio.value,
-      mensaje: form.mensaje.value.trim()
-    };
-
+  function mailtoFallback(data) {
     var subject = 'Solicitud de cotización — ' + data.servicio;
     var lines = [
       'Hola SATI, quiero solicitar una cotización:',
@@ -134,17 +126,62 @@ document.addEventListener('DOMContentLoaded', function () {
       data.mensaje
     ].filter(function (line) { return line !== null; });
 
-    var url = 'mailto:' + QUOTE_EMAIL +
+    window.location.href = 'mailto:' + QUOTE_EMAIL +
       '?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(lines.join('\n'));
+  }
 
-    successBox.classList.add('show');
-    window.location.href = url;
-    form.reset();
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    setTimeout(function () {
-      successBox.classList.remove('show');
-    }, 8000);
+    var data = {
+      nombre: form.nombre.value.trim(),
+      empresa: form.empresa.value.trim(),
+      telefono: form.telefono.value.trim(),
+      email: form.email.value.trim(),
+      servicio: form.servicio.value,
+      mensaje: form.mensaje.value.trim()
+    };
+
+    successBox.classList.remove('show');
+    if (errorBox) errorBox.classList.remove('show');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Enviando...';
+
+    fetch('https://formsubmit.co/ajax/' + QUOTE_EMAIL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: 'Solicitud de cotización — ' + data.servicio,
+        Nombre: data.nombre,
+        Empresa: data.empresa || '(no indicada)',
+        Teléfono: data.telefono,
+        Correo: data.email,
+        Servicio: data.servicio,
+        Detalle: data.mensaje
+      })
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Respuesta no válida del servidor');
+        return res.json();
+      })
+      .then(function () {
+        successBox.classList.add('show');
+        form.reset();
+      })
+      .catch(function () {
+        // Sin conexión al servicio de envío: abrimos el correo del
+        // visitante como respaldo para que la solicitud no se pierda.
+        if (errorBox) errorBox.classList.add('show');
+        mailtoFallback(data);
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = submitBtnDefaultHTML;
+      });
   });
 
   /* ---------- Footer year ---------- */
