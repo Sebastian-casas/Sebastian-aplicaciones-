@@ -22,14 +22,12 @@ python3 -m http.server 8080
 
 y visita `http://localhost:8080`.
 
-## Datos de contacto (placeholder — reemplazar antes de publicar)
+## Datos de contacto
 
-El sitio usa datos de ejemplo que deben actualizarse con la información real de SATI:
-
-- Teléfono / WhatsApp: `+56 9 1234 5678` (aparece en `index.html` y `js/main.js`, variable `WHATSAPP_NUMBER`)
-- Correo: `contacto@sati.cl`
-- Dirección: `Camino Industrial 1234, Santiago, Chile` (también usada en el mapa embebido)
-- Redes sociales: enlaces `#` en el header y footer
+- Teléfono / WhatsApp: `+56 9 9139 5424` — real, confirmado por el cliente. Aparece en `index.html` (botón "Llámanos ahora", enlaces de WhatsApp, sección de contacto) y en `js/main.js` como `WHATSAPP_NUMBER`. El formulario de cotización arma el mensaje y lo envía por WhatsApp a este número.
+- Correo para cotizaciones: `administracion@satichile.cl` — real, confirmado por el cliente (enlace `mailto:` en la sección de contacto).
+- Dirección: `Camino Industrial 1234, Santiago, Chile` — **todavía es un placeholder**, reemplázala en `index.html` (sección de contacto y footer) y en el mapa embebido.
+- Redes sociales: enlaces `#` en el header y footer — placeholder, faltan las URLs reales.
 
 ## Logo
 

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
-  var WHATSAPP_NUMBER = '56912345678';
+  var WHATSAPP_NUMBER = '56991395424';
 
   /* ---------- Header scroll shadow ---------- */
   var header = document.getElementById('header');
