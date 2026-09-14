@@ -1,5 +1,8 @@
 # SATI — Transportes y Maquinaria
 
+Sitio publicado en producción vía Vercel (conectado a esta rama):
+https://sati-transportes.vercel.app
+
 Landing page estática para SATI (transporte de carga menor y mayor por carretera, y servicios de izaje).
 
 ## Estructura
