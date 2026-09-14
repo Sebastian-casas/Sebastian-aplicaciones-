@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   var WHATSAPP_NUMBER = '56991395424';
+  var QUOTE_EMAIL = 'administracion@satichile.cl';
 
   /* ---------- Header scroll shadow ---------- */
   var header = document.getElementById('header');
@@ -53,49 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ---------- Animated counters (hero + stats band) ---------- */
-  function animateCounter(el) {
-    var raw = el.textContent.trim();
-    var match = raw.match(/^([^\d]*)(\d[\d.]*)(.*)$/);
-    if (!match) return;
-    var prefix = match[1];
-    var numberPart = match[2];
-    var suffix = match[3];
-    var hasThousands = numberPart.indexOf('.') > -1 && numberPart.length > 3;
-    var target = parseInt(numberPart.replace(/\./g, ''), 10);
-    if (isNaN(target)) return;
-    var duration = 1200;
-    var start = null;
-
-    function step(ts) {
-      if (!start) start = ts;
-      var progress = Math.min((ts - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      var value = Math.round(target * eased);
-      var display = hasThousands ? value.toLocaleString('es-CL') : String(value);
-      el.textContent = prefix + display + suffix;
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        el.textContent = prefix + numberPart + suffix;
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  var counterEls = document.querySelectorAll('.hero-stats b');
-  if ('IntersectionObserver' in window) {
-    var counterObserver = new IntersectionObserver(function (entries, obs) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    counterEls.forEach(function (el) { counterObserver.observe(el); });
-  }
-
   /* ---------- Reveal on scroll ---------- */
   var revealTargets = document.querySelectorAll(
     '.service-card, .reason-item, .gallery-item, .testi-card'
@@ -146,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateParallax();
   }
 
-  /* ---------- Contact form -> WhatsApp ---------- */
+  /* ---------- Contact form -> Correo ---------- */
   var form = document.getElementById('quoteForm');
   var successBox = document.getElementById('formSuccess');
 
@@ -162,21 +120,26 @@ document.addEventListener('DOMContentLoaded', function () {
       mensaje: form.mensaje.value.trim()
     };
 
+    var subject = 'Solicitud de cotización — ' + data.servicio;
     var lines = [
       'Hola SATI, quiero solicitar una cotización:',
+      '',
       'Nombre: ' + data.nombre,
       data.empresa ? 'Empresa: ' + data.empresa : null,
       'Teléfono: ' + data.telefono,
       'Correo: ' + data.email,
       'Servicio: ' + data.servicio,
-      'Detalle: ' + data.mensaje
-    ].filter(Boolean);
+      '',
+      'Detalle:',
+      data.mensaje
+    ].filter(function (line) { return line !== null; });
 
-    var text = encodeURIComponent(lines.join('\n'));
-    var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
+    var url = 'mailto:' + QUOTE_EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(lines.join('\n'));
 
     successBox.classList.add('show');
-    window.open(url, '_blank', 'noopener');
+    window.location.href = url;
     form.reset();
 
     setTimeout(function () {

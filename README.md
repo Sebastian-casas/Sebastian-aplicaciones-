@@ -7,10 +7,9 @@ Landing page estática para SATI (transporte de carga menor y mayor por carreter
 ```
 index.html          Página principal (todas las secciones)
 css/styles.css       Estilos (paleta, layout, responsive)
-js/main.js           Menú móvil, scroll, contador animado, formulario -> WhatsApp
-assets/img/logo.png        Logo real de SATI (isotipo + wordmark), usado en el header
-assets/img/logo-footer.png Isotipo real (solo la flecha, sin fondo), usado en el footer
-assets/img/logo-mark.svg   Isotipo recreado en SVG, se usa solo como favicon
+js/main.js           Menú móvil, scroll, formulario -> correo
+assets/img/logo.png      Logo real de SATI (isotipo + wordmark), usado en header y footer
+assets/img/logo-mark.svg Isotipo recreado en SVG, se usa solo como favicon
 ```
 
 ## Cómo verla localmente
@@ -25,15 +24,14 @@ y visita `http://localhost:8080`.
 
 ## Datos de contacto
 
-- Teléfono / WhatsApp: `+56 9 9139 5424` — real, confirmado por el cliente. Aparece en `index.html` (botón "Llámanos ahora", enlaces de WhatsApp, sección de contacto) y en `js/main.js` como `WHATSAPP_NUMBER`. El formulario de cotización arma el mensaje y lo envía por WhatsApp a este número.
-- Correo para cotizaciones: `administracion@satichile.cl` — real, confirmado por el cliente (enlace `mailto:` en la sección de contacto).
-- Dirección: **no se muestra** — SATI opera sin oficina física de atención al público (dirección virtual), así que se quitó la tarjeta de dirección, el mapa embebido y la mención en el footer. En su lugar la sección de contacto muestra horario y cobertura (todo Chile, atención remota).
+- Teléfono / WhatsApp: `+56 9 9139 5424` — real, confirmado por el cliente. Aparece en `index.html` (botón "Llámanos ahora", enlaces de WhatsApp) y en `js/main.js` como `WHATSAPP_NUMBER`.
+- Correo para cotizaciones: `administracion@satichile.cl` — real, confirmado por el cliente. Aparece en la sección de contacto (enlace `mailto:`) y en `js/main.js` como `QUOTE_EMAIL`; es el destino del formulario de cotización.
+- Dirección: **no se muestra** — SATI opera sin oficina física de atención al público (dirección virtual), así que se quitó la tarjeta de dirección y el mapa embebido de la sección de contacto.
 - Redes sociales: enlaces `#` en el header y footer — placeholder, faltan las URLs reales.
 
 ## Logo
 
-- `assets/img/logo.png`: logo completo real de SATI (isotipo + wordmark "sati"), usado en el header.
-- `assets/img/logo-footer.png`: recorte real del isotipo (solo la flecha naranja, sin el cuadrado de fondo), usado en el footer sobre el fondo oscuro.
+- `assets/img/logo.png`: logo completo real de SATI (isotipo + wordmark "sati"), usado tanto en el header como en el footer (en el footer se invierte a blanco vía CSS para que se lea sobre el fondo oscuro).
 - `assets/img/logo-mark.svg`: favicon — sigue siendo una recreación vectorial simplificada del ícono (no el archivo real), porque un favicon necesita verse nítido a tamaños muy pequeños (16-32px), algo que un recorte de PNG no garantiza. Si prefieres usar el ícono real ahí también, súbelo como `assets/img/favicon.png` y actualiza el `<link rel="icon">` en el `<head>` de `index.html`.
 
 ## Fotografías reales
@@ -52,4 +50,4 @@ Si en algún momento faltara alguno de estos archivos, esos espacios se ven como
 
 ## Formulario de contacto
 
-El formulario de cotización no tiene backend: al enviarlo arma un mensaje y abre WhatsApp con el número configurado. Para recibir cotizaciones también por correo, se puede conectar a un servicio de formularios (Formspree, Web3Forms, etc.) o a un backend propio.
+El formulario de cotización no tiene backend: al enviarlo arma un enlace `mailto:` (asunto + cuerpo con los datos del formulario) y abre el programa de correo del visitante, dirigido a `administracion@satichile.cl`. Esto depende de que el visitante tenga un cliente de correo configurado en su dispositivo/navegador; si prefieres que el envío ocurra directamente desde el servidor sin depender de eso, se puede conectar a un servicio de formularios (Formspree, Web3Forms, etc.) o a un backend propio.
