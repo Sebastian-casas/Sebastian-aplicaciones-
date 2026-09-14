@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     requestAnimationFrame(step);
   }
 
-  var counterEls = document.querySelectorAll('.hero-stats b, .stats-grid b');
+  var counterEls = document.querySelectorAll('.hero-stats b');
   if ('IntersectionObserver' in window) {
     var counterObserver = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Reveal on scroll ---------- */
   var revealTargets = document.querySelectorAll(
-    '.service-card, .why-card, .process-step, .fleet-card, .gallery-item, .testi-card, .feature-row'
+    '.service-card, .reason-item, .gallery-item, .testi-card'
   );
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries, obs) {
@@ -117,6 +117,33 @@ document.addEventListener('DOMContentLoaded', function () {
       el.style.transition = 'opacity .6s ease, transform .6s ease';
       revealObserver.observe(el);
     });
+  }
+
+  /* ---------- Parallax (decorative elements only) ---------- */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+  if (!reduceMotion && parallaxEls.length) {
+    var parallaxTicking = false;
+    function updateParallax() {
+      var vh = window.innerHeight;
+      parallaxEls.forEach(function (el) {
+        var factor = parseFloat(el.getAttribute('data-parallax')) || 0;
+        var rect = el.getBoundingClientRect();
+        var center = rect.top + rect.height / 2;
+        var offset = (center - vh / 2) * factor;
+        el.style.setProperty('--py', offset.toFixed(1) + 'px');
+      });
+      parallaxTicking = false;
+    }
+    function onScrollParallax() {
+      if (!parallaxTicking) {
+        requestAnimationFrame(updateParallax);
+        parallaxTicking = true;
+      }
+    }
+    window.addEventListener('scroll', onScrollParallax, { passive: true });
+    window.addEventListener('resize', onScrollParallax);
+    updateParallax();
   }
 
   /* ---------- Contact form -> WhatsApp ---------- */
