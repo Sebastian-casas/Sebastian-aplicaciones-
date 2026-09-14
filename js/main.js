@@ -170,12 +170,16 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(function () {
         successBox.classList.add('show');
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
         form.reset();
       })
       .catch(function () {
         // Sin conexión al servicio de envío: abrimos el correo del
         // visitante como respaldo para que la solicitud no se pierda.
-        if (errorBox) errorBox.classList.add('show');
+        if (errorBox) {
+          errorBox.classList.add('show');
+          errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
         mailtoFallback(data);
       })
       .finally(function () {
