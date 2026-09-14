@@ -539,15 +539,6 @@ section { position: relative; }
 .contact-info-card h4 { margin: 0 0 4px; font-size: 15px; color: var(--dark); }
 .contact-info-card p, .contact-info-card a { margin: 0; font-size: 14px; color: var(--gray-500); line-height: 1.6; }
 .contact-info-card a:hover { color: var(--orange-2); }
-.map-frame {
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--gray-100);
-  box-shadow: var(--shadow);
-  height: 260px;
-}
-.map-frame iframe { width: 100%; height: 100%; border: 0; }
-
 .form-card {
   background: var(--white);
   border: 1px solid var(--gray-100);
@@ -606,7 +597,7 @@ section { position: relative; }
   padding-bottom: 50px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.footer-brand img { height: 54px; margin-bottom: 18px; filter: brightness(0) invert(1); }
+.footer-brand img { height: 56px; margin-bottom: 18px; }
 .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 300px; margin: 0 0 20px; }
 .footer-social { display: flex; gap: 12px; }
 .footer-social a {
