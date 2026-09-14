@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
-  var WHATSAPP_NUMBER = '56991395424';
   var QUOTE_EMAIL = 'administracion@satichile.cl';
 
   /* Cada bloque va en su propio try/catch: si uno falla, no debe
