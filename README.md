@@ -8,9 +8,8 @@ Landing page estática para SATI (transporte de carga menor y mayor por carreter
 index.html          Página principal (todas las secciones)
 css/styles.css       Estilos (paleta, layout, responsive)
 js/main.js           Menú móvil, scroll, formulario -> correo
-assets/img/logo.png        Logo real de SATI (isotipo + wordmark), usado en el header
-assets/img/logo-footer.png Isotipo real (solo la flecha, sin fondo), usado en el footer
-assets/img/logo-mark.svg   Isotipo recreado en SVG, se usa solo como favicon
+assets/img/logo.png      Logo real de SATI (isotipo + wordmark), usado en header y footer
+assets/img/logo-mark.svg Isotipo recreado en SVG, se usa solo como favicon
 ```
 
 ## Cómo verla localmente
@@ -32,8 +31,7 @@ y visita `http://localhost:8080`.
 
 ## Logo
 
-- `assets/img/logo.png`: logo completo real de SATI (isotipo + wordmark "sati"), usado en el header.
-- `assets/img/logo-footer.png`: recorte real del isotipo (solo la flecha naranja, sin el cuadrado de fondo), usado en el footer sobre el fondo oscuro — se muestra en su color naranjo original, sin invertir.
+- `assets/img/logo.png`: logo completo real de SATI (isotipo + wordmark "sati"), usado tanto en el header como en el footer. En el footer se invierte a blanco vía CSS (`filter: brightness(0) invert(1)`) para que se lea sobre el fondo oscuro.
 - `assets/img/logo-mark.svg`: favicon — sigue siendo una recreación vectorial simplificada del ícono (no el archivo real), porque un favicon necesita verse nítido a tamaños muy pequeños (16-32px), algo que un recorte de PNG no garantiza. Si prefieres usar el ícono real ahí también, súbelo como `assets/img/favicon.png` y actualiza el `<link rel="icon">` en el `<head>` de `index.html`.
 
 ## Fotografías reales
